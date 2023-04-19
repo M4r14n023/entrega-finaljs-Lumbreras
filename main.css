@@ -1,0 +1,27 @@
+.btn-group {
+    display: flex;
+    gap: 1rem;
+    margin-top: 1.5rem;
+    flex-wrap: wrap;
+  }
+  .btn-group .btn {
+    border: 0;
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    background-color: pink;
+  }
+  .btn-group .btn:hover {
+    background-color: #d9a4ad;
+  }
+  
+/****** DARK MODE ******/
+
+body {
+    transition: background-color .3s, color .3s;
+}
+
+body.dark-mode {
+    background-color: #1b0737;
+    color: white;
+}

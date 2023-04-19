@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="main.css">
+    <title>Almacenamiento de Películas y Series</title>
+  </head>
+  <body>
+    <h1>Bienvenido</h1>
+    <div id="login-form">
+      <h2>Iniciar sesión</h2>
+      <form>
+        <label for="username">Nombre de usuario:</label>
+        <input type="text" id="username" name="username" required>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required>
+        <button type="submit">Iniciar sesión</button>
+      </form>
+    </div>
+    <div id="register-form">
+      <h2>Registro de usuario</h2>
+      <form>
+        <label for="new-username">Nombre de usuario:</label>
+        <input type="text" id="new-username" name="new-username" required>
+        <label for="new-password">Contraseña:</label>
+        <input type="password" id="new-password" name="new-password" required>
+        <button type="submit">Registrarse</button>
+      </form>
+    </div>
+    <h1>Almacenamiento de Películas y Series</h1>
+
+    <form id="formulario">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" required>
+
+      <label for="tipo">Tipo:</label>
+      <select id="tipo" required>
+        <option value=""></option>
+        <option value="Película">Película</option>
+        <option value="Serie">Serie</option>
+      </select>
+
+      <div id="datosSerie" style="display:none">
+        <label for="cantidadTemporadas">Cantidad de temporadas:</label>
+        <input type="number" id="cantidadTemporadas">
+
+        <label for="cantidadEpisodios">Cantidad de episodios por temporada:</label>
+        <input type="number" id="cantidadEpisodios">
+
+        <label for="duracion">Duración promedio por episodio (min):</label>
+        <input type="number" id="duracion">
+      </div>
+
+      <label for="duracionPeli">Duración de la Película (min):</label>
+      <input type="number" id="duracionPeli">
+
+      <button type="submit">Agregar</button>
+    </form>
+
+    <ul id="listaItems"></ul>
+    <p id="duracionPeliculas"></p>
+    <p id="duracionSeries"></p>
+
+    <div class="btn-group">
+
+        <button id="color-mode" class="btn">Cambiar a Dark Mode</button>
+
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
+
