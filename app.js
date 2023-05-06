@@ -10,9 +10,42 @@ loginForm.addEventListener("submit", (event) => {
   const password = event.target.password.value;
   const storedUser = localStorage.getItem(username);
   if (storedUser !== null && JSON.parse(storedUser).password === password) {
+    window.location = "seriesPelis.html";
     welcomeMessage.textContent = "Bienvenido " + username;
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'success',
+      title: 'Haz iniciado tu sesión'
+    })
   } else {
-    alert("Nombre de usuario o contraseña incorrectos.");
+    // alert("Nombre de usuario o contraseña incorrectos.");
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'error',
+      title: 'Nombre de usuario o contraseña incorrectos.'
+    })
   }
 });
 
@@ -21,12 +54,44 @@ registerForm.addEventListener("submit", (event) => {
   event.preventDefault();
   const newUsername = event.target["new-username"].value;
   const newPassword = event.target["new-password"].value;
-  const newUser = { password: newPassword };
+  // const newUser = { password: newPassword };
+  const newUser = { username: newUsername,password: newPassword };
   if (localStorage.getItem(newUsername) !== null) {
-    alert("El nombre de usuario ya está en uso. Por favor, elija otro.");
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'warning',
+      title: 'El usuario ya existe'
+    });
   } else {
+    
     localStorage.setItem(newUsername, JSON.stringify(newUser));
-    alert("Usuario registrado con éxito. Por favor, inicie sesión.");
+    const Toast = Swal.mixin({
+      toast: true,
+      position: 'top-end',
+      showConfirmButton: false,
+      timer: 2000,
+      timerProgressBar: true,
+      didOpen: (toast) => {
+        toast.addEventListener('mouseenter', Swal.stopTimer)
+        toast.addEventListener('mouseleave', Swal.resumeTimer)
+      }
+    })
+    
+    Toast.fire({
+      icon: 'success',
+      title: 'Usuario Registrado con Exito'
+    })
   }
 });
 
@@ -59,6 +124,9 @@ function register(event) {
   // Si no lo está, almacenar credenciales en localStorage
 }
 
+
+
+
 // Obtenemos el formulario y los campos de entrada
 const formulario = document.getElementById("formulario");
 const nombreInput = document.getElementById("nombre");
@@ -68,18 +136,32 @@ const cantidadTemporadasInput = document.getElementById("cantidadTemporadas");
 const cantidadEpisodiosInput = document.getElementById("cantidadEpisodios");
 const duracionInput = document.getElementById("duracion");
 const datosSerieDiv = document.getElementById("datosSerie");
+// const botonpeli = document.getElementById("btnPeli");
+const labelDurPeli = document.getElementById("duracionPeliLabel")
 
 // Agregamos un evento al selector de tipo para mostrar o ocultar los campos de datos de serie
+
+let duracionPelis = 0
+
 tipoSelect.addEventListener("change", () => {
   if (tipoSelect.value === "Serie") {
     datosSerieDiv.style.display = "block";
+    duracionInputP.style.display = "none";
+    duracionInputP.value = duracionPelis;
+    // botonpeli.style.display = "none";
+    labelDurPeli.style.display ="none"
   } else {
     datosSerieDiv.style.display = "none";
+    duracionInputP.style.display = "block";
   }
 });
 
 // Función para agregar un item a la lista
 function agregarItem(nombre, tipo, duracionPeliculas, cantidadTemporadas, cantidadEpisodios, duracion) {
+
+  const Logueado = localStorage.getItem("username");
+
+  if (Logueado){
   const item = {
     nombre: nombre,
     tipo: tipo,
@@ -89,11 +171,52 @@ function agregarItem(nombre, tipo, duracionPeliculas, cantidadTemporadas, cantid
     duracion: duracion
   };
   
+  if (nombre == "" || tipo == "" || duracionPeliculas == "") {
+    Swal.fire({
+      icon: 'info',
+      title: 'Completa todos los campos para agregar la '+tipo,
+      text: 'Deberas volver a cargar todos los datos',
+    });
+    return false;
+  }
+  
+  if (tipo == "Serie" && (cantidadTemporadas == "" || cantidadEpisodios == "" || duracion == "")) {
+    Swal.fire({
+      icon: 'info',
+      title: 'Completa todos los campos para agregar la '+tipo,
+      text: 'Deberas volver a cargar todos los datos',
+    });
+    return false;
+  }
+  
+  // return true;
+
+
   let items = JSON.parse(localStorage.getItem("items")) || [];
   items.push(item);
   localStorage.setItem("items", JSON.stringify(items));
+
+  Swal.fire({
+    position: 'top-end',
+    icon: 'success',
+    title: 'Tu '+tipo+' fue cargada con exito',
+    showConfirmButton: false,
+    timer: 1500
+  });}
+
+  else if (!Logueado) {
+    console.log('El usuario no está logueado');
+      alert('logueate')
+      // Swal.fire({
+      //   icon: 'error',
+      //   // title: 'Error',
+      //   text: 'Debe iniciar sesión para agregar información',
+      // });
+      return;
+  }  
   
   mostrarLista();
+  
 }
 
 // Función para mostrar los items de la lista
@@ -172,3 +295,7 @@ botonColorMode.addEventListener("click", () => {
         activarDarkMode();
     }
 })
+
+
+
+

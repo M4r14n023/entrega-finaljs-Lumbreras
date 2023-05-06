@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="main.css">
-    <title>Almacenamiento de Películas y Series</title>
+    <title>Login Pelis Series</title>
   </head>
   <body>
     <h1>Bienvenido</h1>
@@ -27,7 +27,9 @@
         <button type="submit">Registrarse</button>
       </form>
     </div>
+
     <h1>Almacenamiento de Películas y Series</h1>
+    <h4>Completa todos los campos</h4>
 
     <form id="formulario">
       <label for="nombre">Nombre:</label>
@@ -49,12 +51,13 @@
 
         <label for="duracion">Duración promedio por episodio (min):</label>
         <input type="number" id="duracion">
+        <!-- <button type="submit">Agregar Serie</button> -->
       </div>
 
-      <label for="duracionPeli">Duración de la Película (min):</label>
+      <label for="duracionPeli" id="duracionPeliLabel">Duración de la Película (min):</label>
       <input type="number" id="duracionPeli">
 
-      <button type="submit">Agregar</button>
+      <button type="submit" id="btnPeli">Agregar</button>
     </form>
 
     <ul id="listaItems"></ul>
@@ -66,7 +69,7 @@
         <button id="color-mode" class="btn">Cambiar a Dark Mode</button>
 
     </div>
-
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     <script src="app.js"></script>
   </body>
 </html>
