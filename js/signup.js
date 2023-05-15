@@ -24,7 +24,7 @@ signupForm.addEventListener('submit', (e)=>{
             icon: 'success',
             title: 'Registro Exitoso!',
             showConfirmButton: false,
-            timer: 1500
+            timer: 2000
         }).then(() => {
             window.location.href = '../index.html'
         })
