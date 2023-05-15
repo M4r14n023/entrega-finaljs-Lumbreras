@@ -1,99 +1,99 @@
 // Obtener elementos del DOM
-const loginForm = document.querySelector("#login-form form");
-const registerForm = document.querySelector("#register-form form");
+const loginForm = document.querySelector("#login-form");
+const registerForm = document.querySelector("#register-form");
 const welcomeMessage = document.querySelector("h1");
 
-// Manejar eventos de formulario de inicio de sesión
-loginForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const username = event.target.username.value;
-  const password = event.target.password.value;
-  const storedUser = localStorage.getItem(username);
-  if (storedUser !== null && JSON.parse(storedUser).password === password) {
-    window.location = "seriesPelis.html";
-    welcomeMessage.textContent = "Bienvenido " + username;
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
+// // Manejar eventos de formulario de inicio de sesión
+// loginForm.addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   const username = event.target.username.value;
+//   const password = event.target.password.value;
+//   const storedUser = localStorage.getItem(username);
+//   if (storedUser !== null && JSON.parse(storedUser).password === password) {
+//     window.location = 'pelisyseries.html';
+//     welcomeMessage.textContent = "Bienvenido " + username;
+//     const Toast = Swal.mixin({
+//       toast: true,
+//       position: 'top-end',
+//       showConfirmButton: false,
+//       timer: 2000,
+//       timerProgressBar: true,
+//       didOpen: (toast) => {
+//         toast.addEventListener('mouseenter', Swal.stopTimer)
+//         toast.addEventListener('mouseleave', Swal.resumeTimer)
+//       }
+//     })
     
-    Toast.fire({
-      icon: 'success',
-      title: 'Haz iniciado tu sesión'
-    })
-  } else {
-    // alert("Nombre de usuario o contraseña incorrectos.");
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
+//     Toast.fire({
+//       icon: 'success',
+//       title: 'Haz iniciado tu sesión'
+//     })
+//   } else {
+//     // alert("Nombre de usuario o contraseña incorrectos.");
+//     const Toast = Swal.mixin({
+//       toast: true,
+//       position: 'top-end',
+//       showConfirmButton: false,
+//       timer: 2000,
+//       timerProgressBar: true,
+//       didOpen: (toast) => {
+//         toast.addEventListener('mouseenter', Swal.stopTimer)
+//         toast.addEventListener('mouseleave', Swal.resumeTimer)
+//       }
+//     })
     
-    Toast.fire({
-      icon: 'error',
-      title: 'Nombre de usuario o contraseña incorrectos.'
-    })
-  }
-});
+//     Toast.fire({
+//       icon: 'error',
+//       title: 'Nombre de usuario o contraseña incorrectos.'
+//     })
+//   }
+// });
 
-// Manejar eventos de formulario de registro
-registerForm.addEventListener("submit", (event) => {
-  event.preventDefault();
-  const newUsername = event.target["new-username"].value;
-  const newPassword = event.target["new-password"].value;
-  // const newUser = { password: newPassword };
-  const newUser = { username: newUsername,password: newPassword };
-  if (localStorage.getItem(newUsername) !== null) {
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
+// // Manejar eventos de formulario de registro
+// registerForm.addEventListener("submit", (event) => {
+//   event.preventDefault();
+//   const newUsername = event.target["new-username"].value;
+//   const newPassword = event.target["new-password"].value;
+//   // const newUser = { password: newPassword };
+//   const newUser = { username: newUsername,password: newPassword };
+//   if (localStorage.getItem(newUsername) !== null) {
+//     const Toast = Swal.mixin({
+//       toast: true,
+//       position: 'top-end',
+//       showConfirmButton: false,
+//       timer: 2000,
+//       timerProgressBar: true,
+//       didOpen: (toast) => {
+//         toast.addEventListener('mouseenter', Swal.stopTimer)
+//         toast.addEventListener('mouseleave', Swal.resumeTimer)
+//       }
+//     })
     
-    Toast.fire({
-      icon: 'warning',
-      title: 'El usuario ya existe'
-    });
-  } else {
+//     Toast.fire({
+//       icon: 'warning',
+//       title: 'El usuario ya existe'
+//     });
+//   } else {
     
-    localStorage.setItem(newUsername, JSON.stringify(newUser));
-    const Toast = Swal.mixin({
-      toast: true,
-      position: 'top-end',
-      showConfirmButton: false,
-      timer: 2000,
-      timerProgressBar: true,
-      didOpen: (toast) => {
-        toast.addEventListener('mouseenter', Swal.stopTimer)
-        toast.addEventListener('mouseleave', Swal.resumeTimer)
-      }
-    })
+//     localStorage.setItem(newUsername, JSON.stringify(newUser));
+//     const Toast = Swal.mixin({
+//       toast: true,
+//       position: 'top-end',
+//       showConfirmButton: false,
+//       timer: 2000,
+//       timerProgressBar: true,
+//       didOpen: (toast) => {
+//         toast.addEventListener('mouseenter', Swal.stopTimer)
+//         toast.addEventListener('mouseleave', Swal.resumeTimer)
+//       }
+//     })
     
-    Toast.fire({
-      icon: 'success',
-      title: 'Usuario Registrado con Exito'
-    })
-  }
-});
+//     Toast.fire({
+//       icon: 'success',
+//       title: 'Usuario Registrado con Exito'
+//     })
+//   }
+// });
 
 // Obtener elementos HTML
 // const loginForm = document.querySelector("#login-form");
@@ -159,9 +159,6 @@ tipoSelect.addEventListener("change", () => {
 // Función para agregar un item a la lista
 function agregarItem(nombre, tipo, duracionPeliculas, cantidadTemporadas, cantidadEpisodios, duracion) {
 
-  const Logueado = localStorage.getItem("username");
-
-  if (Logueado){
   const item = {
     nombre: nombre,
     tipo: tipo,
@@ -189,9 +186,6 @@ function agregarItem(nombre, tipo, duracionPeliculas, cantidadTemporadas, cantid
     return false;
   }
   
-  // return true;
-
-
   let items = JSON.parse(localStorage.getItem("items")) || [];
   items.push(item);
   localStorage.setItem("items", JSON.stringify(items));
@@ -202,22 +196,11 @@ function agregarItem(nombre, tipo, duracionPeliculas, cantidadTemporadas, cantid
     title: 'Tu '+tipo+' fue cargada con exito',
     showConfirmButton: false,
     timer: 1500
-  });}
+  });
+  
+  mostrarLista();}
+  
 
-  else if (!Logueado) {
-    console.log('El usuario no está logueado');
-      alert('logueate')
-      // Swal.fire({
-      //   icon: 'error',
-      //   // title: 'Error',
-      //   text: 'Debe iniciar sesión para agregar información',
-      // });
-      return;
-  }  
-  
-  mostrarLista();
-  
-}
 
 // Función para mostrar los items de la lista
 function mostrarLista() {

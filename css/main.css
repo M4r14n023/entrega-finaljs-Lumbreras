@@ -14,7 +14,23 @@
   .btn-group .btn:hover {
     background-color: #d9a4ad;
   }
+  body .pelis-populares {
+    text-decoration: none;
+    background: black;
+    cursor: pointer;
+    border: none;
+    padding: 16px 32px;
+    font-size: 15px;
+    letter-spacing: 3px;
+    position: fixed;
+    border-radius: 12px;
+    bottom: 10px;
+    right: 30px; }
   
+    body .estilo-boton {
+      font-weight: bolder;
+      color: white; }
+
 /****** DARK MODE ******/
 
 body {
