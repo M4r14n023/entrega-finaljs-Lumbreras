@@ -26,7 +26,7 @@ signupForm.addEventListener('submit', (e)=>{
             showConfirmButton: false,
             timer: 2000
         }).then(() => {
-            window.location.href = '../index.html'
+            window.location.href = 'login.html'
         })
     }
 })
